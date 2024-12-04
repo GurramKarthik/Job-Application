@@ -25,7 +25,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookie());
 
 const corsOptions ={
-    origin:"https://job-application-production.up.railway.app", // this is react's url
+    origin:"https://job-application-production.up.railway.app",
     credentials: true,                
 } 
 app.use(cors(corsOptions));
@@ -34,6 +34,10 @@ app.use(cookieParser());
 
 app.use(cookieParser());
 
+
+app.get("/" , (req, res) =>{
+    res.send("Hai I am Live")
+})
 
 
 //creating api's for user

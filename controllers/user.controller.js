@@ -62,8 +62,6 @@ export const Register = async (req, res) => {
 export const Login = async (req, res) => {
   let { email, password, role } = req.body;
 
-  return res.send("Login")
-
   try {
     //All details did not enter
     if (!email || !password || !role) {

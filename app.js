@@ -35,9 +35,7 @@ app.use(cookieParser());
 app.use(cookieParser());
 
 
-app.get("/" , (req, res) =>{
-    res.send("Hai I am Live")
-})
+
 
 
 //creating api's for user
@@ -45,7 +43,9 @@ app.use("/api/v1/user", userRouter)
 app.use("/api/v1/company", companyRouter)
 app.use("/api/v1/user/job", jobRouter )
 app.use("/api/v1/user/application", applicationRouter)
-
+app.use("/",  (req, res) =>{
+    res.send("Hai I am Live")
+})
 
 app.listen(port, ()=>{
     console.log(`listening to port ${port}....`);

@@ -8,6 +8,7 @@ import companyRouter from "./routers/company.router.js";
 import jobRouter from "./routers/job.router.js";
 import applicationRouter from "./routers/application.router.js"
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 
 
@@ -22,6 +23,14 @@ const port =  process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookie());
+
+const corsOptions ={
+    origin:"https://job-application-production.up.railway.app", // this is react's url
+    credentials: true,                
+} 
+app.use(cors(corsOptions));
+app.use(cookieParser());
+
 
 app.use(cookieParser());
 

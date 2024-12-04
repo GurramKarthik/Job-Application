@@ -10,7 +10,7 @@ router.route("/register").post(Register)
 router.route("/login").post((req, res, next) => {
     res.send("Login")
     next();
-}, Register);
+});
 router.route("/profile/update").put( isAuthenticated, updateProfile)
 router.route("/profile/view").get(isAuthenticated, viewProfile)
 router.route("/logout").get(isAuthenticated, LogOut)

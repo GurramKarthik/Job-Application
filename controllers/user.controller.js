@@ -63,7 +63,7 @@ export const Login = async (req, res) => {
   let { email, password, role } = req.body;
 
     
-    return res.send("Hai I am Login")
+    console.log("Login is called")
   try {
     //All details did not enter
     if (!email || !password || !role) {

@@ -9,6 +9,7 @@ import jobRouter from "./routers/job.router.js";
 import applicationRouter from "./routers/application.router.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { Login } from "./controllers/user.controller.js";
 
 
 
@@ -39,12 +40,12 @@ app.use(cookieParser());
 
 
 //creating api's for user
-app.use("/api/v1/user",userRouter)
+app.use("/api/v1/user/login",Login)
 app.use("/api/v1/company", companyRouter)
 app.use("/api/v1/user/job", jobRouter )
 app.use("/api/v1/user/application", applicationRouter)
 app.use("/",  (req, res) =>{
-    res.send("Hai I am Live")
+    res.send("Hello stated")
 })
 
 app.listen(port, ()=>{

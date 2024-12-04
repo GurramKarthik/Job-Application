@@ -39,9 +39,7 @@ app.use(cookieParser());
 
 
 //creating api's for user
-app.use("/api/v1/user", (req, res) =>{
-    res.send("Hai register")
-})
+app.use("/api/v1/user",userRouter)
 app.use("/api/v1/company", companyRouter)
 app.use("/api/v1/user/job", jobRouter )
 app.use("/api/v1/user/application", applicationRouter)

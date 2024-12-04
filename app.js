@@ -62,14 +62,6 @@ app.get("/api/v1/job/:id/applicants", isAuthenticated, getApplcations); // needs
 app.put("/api/v1/job/status/:id/update", isAuthenticated, updateStatus); // for recruiters - needs application ID
 
 
-
-app.use("/api/v1/company", companyRouter)
-app.use("/api/v1/user/job", jobRouter )
-app.use("/api/v1/user/application", applicationRouter)
-app.use("/",  (req, res) =>{
-    res.send("Hello")
-})
-
 app.listen(port, ()=>{
     console.log(`listening to port ${port}....`);
     mongoDb();

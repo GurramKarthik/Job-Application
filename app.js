@@ -9,8 +9,11 @@ import jobRouter from "./routers/job.router.js";
 import applicationRouter from "./routers/application.router.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { Login } from "./controllers/user.controller.js";
-
+import { Login, LogOut, Register, updateProfile, viewProfile } from "./controllers/user.controller.js";
+import isAuthenticated from "./middlewares/isAuthenticated.js";
+import { getJobById, getJobByRecruter, getJobs, postJob } from "./controllers/job.controller.js";
+import { getCompany, getCompanyById, registerCompany, updateCompany } from "./controllers/company.controller.js";
+import { applyJob, getApplcations, getAppliedJobs, updateStatus } from "../controllers/Application.controller.js"
 
 
 
@@ -41,11 +44,30 @@ app.use(cookieParser());
 
 //creating api's for user
 app.use("/api/v1/user/login",Login)
+app.post("/api/v1/user/register", Register);
+app.put("/api/v1/user/profile/update", isAuthenticated, updateProfile);
+app.get("/api/v1/user/profile/view", isAuthenticated, viewProfile);
+app.get("/api/v1/user/logout", isAuthenticated, LogOut);
+app.post("/api/v1/job/post", isAuthenticated, postJob);
+app.get("/api/v1/job/get", isAuthenticated, getJobs);
+app.get("/api/v1/job/get/:jobId", isAuthenticated, getJobById);
+app.get("/api/v1/job/getAdminJobs", isAuthenticated, getJobByRecruter);
+app.post("/api/v1/company/register", isAuthenticated, registerCompany);
+app.get("/api/v1/company/get", isAuthenticated, getCompany);
+app.get("/api/v1/company/get/:companyId", isAuthenticated, getCompanyById);
+app.put("/api/v1/company/update/:companyId", isAuthenticated, updateCompany);
+app.post("/api/v1/job/apply/:id", isAuthenticated, applyJob); // for students - needs job id
+app.get("/api/v1/job/getAppliedJobs", isAuthenticated, getAppliedJobs); // for students
+app.get("/api/v1/job/:id/applicants", isAuthenticated, getApplcations); // needs JobId - for recruiters
+app.put("/api/v1/job/status/:id/update", isAuthenticated, updateStatus); // for recruiters - needs application ID
+
+
+
 app.use("/api/v1/company", companyRouter)
 app.use("/api/v1/user/job", jobRouter )
 app.use("/api/v1/user/application", applicationRouter)
 app.use("/",  (req, res) =>{
-    res.send("Hello stated")
+    res.send("Hello")
 })
 
 app.listen(port, ()=>{

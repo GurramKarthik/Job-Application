@@ -13,7 +13,7 @@ import { Login, LogOut, Register, updateProfile, viewProfile } from "./controlle
 import isAuthenticated from "./middlewares/isAuthenticated.js";
 import { getJobById, getJobByRecruter, getJobs, postJob } from "./controllers/job.controller.js";
 import { getCompany, getCompanyById, registerCompany, updateCompany } from "./controllers/company.controller.js";
-import { applyJob, getApplcations, getAppliedJobs, updateStatus } from "../controllers/Application.controller.js"
+import { applyJob, getApplcations, getAppliedJobs, updateStatus } from "./controllers/Application.controller.js"
 
 
 
